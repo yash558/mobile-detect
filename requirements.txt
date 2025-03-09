@@ -1,4 +1,7 @@
+flask
+flask-cors
 tensorflow
 numpy
-matplotlib
+pillow
 pandas
+matplotlib

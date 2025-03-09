@@ -23,8 +23,10 @@ function ImageUpload() {
                     'Content-Type': 'multipart/form-data'
                 }
             });
-            // Round predictions to 1 decimal place for readability
-            const roundedPredictions = response.data.predictions.map(pred => pred.toFixed(1));
+            // Ensure predictions are numbers and round them once
+            const roundedPredictions = response.data.predictions.map(pred => 
+                typeof pred === 'string' ? parseFloat(pred).toFixed(1) : Number(pred).toFixed(1)
+            );
             setPredictions(roundedPredictions);
         } catch (error) {
             console.error("Error with the prediction!", error);
@@ -57,7 +59,7 @@ function ImageUpload() {
                     <h3 className="text-xl font-bold text-gray-700 mb-4">Predictions:</h3>
                     <ul className="space-y-2 text-gray-700">
                         {predictions.map((pred, index) => (
-                            <li key={index} className="text-lg font-medium"> {index == 1 ? "Efficiency and Ease to use" : index == 2 ? "Color Contrast" : index == 3 ? "Readability" : "Simplicity"}: {pred.toFixed(1)}</li>
+                            <li key={index} className="text-lg font-medium"> {index == 1 ? "Efficiency and Ease to use" : index == 2 ? "Color Contrast" : index == 3 ? "Readability" : "Simplicity"}: {pred}</li>
                         ))}
                     </ul>
                 </div>

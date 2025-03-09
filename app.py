@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)  # Enable CORS for all routes
 
 # Load the model
-model = tf.keras.models.load_model(os.path.join(os.getcwd(), "model/usability_accessibility_regression_model.keras"))
+model = tf.keras.models.load_model(os.path.join(os.getcwd(), "model/usability_accessibility_regression_model.h5"))
 
 # Define the image size as required by the model
 IMG_SIZE = (128, 128)
